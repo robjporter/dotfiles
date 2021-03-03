@@ -3,6 +3,7 @@
 # Output directories
 build/
 out/
+.dotfiles/
 
 # Mac OS X files
 .DS_Store

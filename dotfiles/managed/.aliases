@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # -=-= Custom =-=-
-alias github="cd ${CODEBASE}/github"
+alias github="cd ${CODEBASE}/git"
 alias dl="cd ~/Downloads"
 alias gop="cd ${GOPATH}/src/github.com"
 alias dc="docker-compose"

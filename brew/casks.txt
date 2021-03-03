@@ -1,10 +1,7 @@
 alfred
 google-chrome
-spotify
-tableplus
 slack
 telegram
-whatsapp
 sublime-text
 visual-studio-code
 iterm2
@@ -13,7 +10,6 @@ muzzle
 postman
 spectacle
 tunnelbear
-zoomus
 docker
 macpass
 typora

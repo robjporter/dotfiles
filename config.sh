@@ -2,15 +2,18 @@
 
 # Description  ENV var specifying dotfiles destination directory
 # ==============================================================
+# export DOTFILES_HOME_DIR=${HOME}/.dotfiles
+export CODEBASE=$(pwd -P)/Documents/
 export DOTFILES_HOME_DIR=${HOME}/.dotfiles
 
 # Description  ENV var specifying codebase root folder
 # ====================================================
-export CODEBASE=${HOME}/codebase
+# export CODEBASE=${HOME}/codebase
+
 
 # Description  ENV var dotfiles repository path (+alias)
 # ======================================================
-export DOTFILES_REPO=${CODEBASE}/github/dotfiles
+export DOTFILES_REPO=${CODEBASE}/git/dotfiles
 alias dotfiles=${DOTFILES_REPO}
 
 # Description  ENV var specifying environmental settings e.g. Go, JDK etc..

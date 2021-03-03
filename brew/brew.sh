@@ -152,6 +152,8 @@ main() {
   # Assuming this script was executed via makefile
   source brew/shell/oh-my-zsh-install.sh
   oh_my_zsh_setup_install
+
+  sudo ln -sfn /usr/local/opt/openjdk@11/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk-11.jdk
 }
 
 main "$@"
