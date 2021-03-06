@@ -1,10 +1,10 @@
 alfred
 google-chrome
 slack
-telegram
-sublime-text
-visual-studio-code
-iterm2
+telegram-desktop-dev
+sublime-text-dev
+visual-studio-code-insiders
+iterm2-beta
 flux
 muzzle
 postman
@@ -14,3 +14,10 @@ docker
 macpass
 typora
 licecap
+kap
+microsoft-edge-dev
+atom-beta
+brave-browser-dev
+firefox-beta
+sonos-s1-controller
+vivaldi-snapshot

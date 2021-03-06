@@ -5,6 +5,7 @@
 # export DOTFILES_HOME_DIR=${HOME}/.dotfiles
 export CODEBASE=$(pwd -P)/Documents/
 export DOTFILES_HOME_DIR=${HOME}/.dotfiles
+export SYNCTHING="$(dirname "$HOME")"
 
 # Description  ENV var specifying codebase root folder
 # ====================================================

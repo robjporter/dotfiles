@@ -1,18 +1,65 @@
 #!/bin/bash
 
+alias reload!='. ~/.zshrc'
+
 # -=-= Custom =-=-
 alias github="cd ${CODEBASE}/git"
-alias dl="cd ~/Downloads"
 alias gop="cd ${GOPATH}/src/github.com"
+alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; npm install npm -g; npm update -g; sudo gem update --system; sudo gem update; sudo gem cleanup'
+
+# -=-= Cleanup =-=-
+alias cleanup="find . -type f -name '*.DS_Store' -ls -delete"
+
+# -=-= Docker =-=-
 alias dc="docker-compose"
+alias dps="docker ps -a"
+alias dsp="docker stop"
+alias dst="docker start"
+alias drmf="docker rm -f"
+alias drmi="docker rmi"
+alias di="docker images"
+
+# -=-= Quick Links =-=-
+alias dl="cd ~/Downloads"
+alias dt="cd ~/Desktop"
 
 # -=-= Applications =-=-
 alias typora="open -a typora"
+
 # Exist only for Java 1.8 - need to use a full path
 alias visualvm="${JAVA_8_HOME}/bin/jvisualvm &"
 
 # -=-= ZSH =-=-
 alias zshconfig="vim ~/.zshrc"
+
+# -=-= Screen =-=-
+alias cls='clear' # Good 'ol Clear Screen command
+alias c="clear"
+
+# -=-= Core Replacements =-=-
+alias mv="mv -iv"
+alias cp="cp -riv"
+alias mkdir="mkdir -vp"
+
+# -=-= Quicker navigation =-=-
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+
+# -=-= GLS =-=-
+if $(gls &>/dev/null)
+then
+    alias ls="gls -F --color"
+    alias l="gls -lAh --color"
+    alias ll="gls -l --color"
+    alias la='gls -A --color'
+    alias lsd='gls -lF ${colorflag} | grep "^d"'
+fi
+alias path='echo $PATH | tr -s ":" "\n"'
+
+# -=-= Keys =-=-
+alias pubkey="more ~/.ssh/id_rsa.pub | pbcopy | echo '=> Public key copied to pasteboard.'"
 
 # -=-= Java =-=-
 alias java8='export JAVA_HOME=${JAVA_8_HOME}'

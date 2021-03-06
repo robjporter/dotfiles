@@ -87,13 +87,70 @@ verify_pre_install() {
   fi
 }
 
+airplay() {
+  echo -e "\nAirplay settings override..."
+  # Use AirDrop over every interface. srsly this should be a default.
+  defaults write com.apple.NetworkBrowser BrowseAllInterfaces 1
+  echo -e "Airplay settings override... Done."
+}
+
+desktop() {
+  echo -e "\Display settings override..."
+  # Set the Finder prefs for showing a few different volumes on the Desktop.
+  defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
+  defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
+  echo -e "Display settings override... Done."
+}
+
+screensaver() {
+  echo -e "\Screensaver settings override..."
+  # Run the screensaver if we're in the bottom-left hot corner.
+  defaults write com.apple.dock wvous-tl-corner -int 5
+  defaults write com.apple.dock wvous-tl-modifier -int 0
+  echo -e "Screensaver settings override... Done."
+}
+
+safari() {
+  echo -e "\Safari settings override..."
+  # Hide Safari's bookmark bar.
+  defaults write com.apple.Safari ShowFavoritesBar -bool false
+
+  # Set up Safari for development.
+  defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
+  defaults write com.apple.Safari IncludeDevelopMenu -bool true
+  defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true
+  defaults write com.apple.Safari "com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled" -bool true
+  defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
+  echo -e "Safari settings override... Done."
+}
+
+quit_system_preferences() {
+  # Close any open System Preferences panes, to prevent them from overriding
+  # settings we’re about to change
+  osascript -e 'tell application "System Preferences" to quit'
+}
+
+get_sudo() {
+  # Ask for the administrator password upfront
+  sudo -v
+
+  # Keep-alive: update existing `sudo` time stamp until `.macos` has finished
+  while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+}
+
 main() {
   print_banner
+  quit_system_preferences
+  get_sudo
   verify_pre_install
 
   key_bindings
   finder
   keyboard
+  airplay
+  desktop
+  screensaver
+  safari
   hidden_files_and_folders
   activity_monitor
 

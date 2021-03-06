@@ -4,6 +4,7 @@
 build/
 out/
 .dotfiles/
+dotfiles/transient/
 
 # Mac OS X files
 .DS_Store

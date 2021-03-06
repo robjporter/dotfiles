@@ -1,5 +1,13 @@
 #!/bin/bash
 
+
+pathAppend() {
+  # Only adds to the path if it's not already there
+  if ! echo $PATH | egrep -q "(^|:)$1($|:)" ; then
+    PATH=$PATH:$1
+  fi
+}
+
 # -=-= Anchor =-=-
 export ANCHOR_FILES=${CODEBASE}/github/anchorfiles
 
@@ -26,7 +34,7 @@ export JAVA_HOME=${JAVA_11_HOME} # Use Java 11 by default
 export GOROOT_1_13=${ENVIRONMENT}/go1.13
 export GOROOT_1_14_2=${ENVIRONMENT}/go1.14.2
 export GOROOT=${GOROOT_1_14_2} # Use Go 1.14.2 by default
-export GOPATH=${HOME}/.go
+export GOPATH=${SYNCTHING}/MyData/go
 #export GO111MODULE="on" # on/off/auto
 
 # -=-= Terraform =-=-
@@ -34,6 +42,11 @@ export TERRAFORM_FILES=${CODEBASE}/github/terraformfiles
 export TF_LOG=DEBUG
 
 # -=-= Path =-=-
-export PATH=/usr/local/bin:/usr/bin:${JAVA_HOME}/bin:${GOROOT}/bin:${GOPATH}/bin:$HOME/.local/bin:${PATH}
+PATH=/usr/local/bin:/usr/bin:${JAVA_HOME}/bin:${GOROOT}/bin:${GOPATH}/bin:$HOME/.local/bin:${PATH}
+
+pathAppend "$SYNCTHING/MyApps/cmd"
+pathAppend "$SYNCTHING/MyApps/flutter/bin"
+
+export PATH=$(echo "$PATH" | awk -v RS=':' -v ORS=":" '!a[$1]++{if (NR > 1) printf ORS; printf $a[$1]}')
 
 # Do not unset these ENV vars since there are aliases that rely on them

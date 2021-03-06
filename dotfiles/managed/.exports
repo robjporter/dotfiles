@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if (( $+commands[yarn] ))
+then
+  export PATH="$PATH:`yarn global bin`"
+fi
+
+export LSCOLORS="exfxcxdxbxegedabagacad"
+export CLICOLOR=true
