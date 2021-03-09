@@ -10,15 +10,6 @@ alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup
 # -=-= Cleanup =-=-
 alias cleanup="find . -type f -name '*.DS_Store' -ls -delete"
 
-# -=-= Docker =-=-
-alias dc="docker-compose"
-alias dps="docker ps -a"
-alias dsp="docker stop"
-alias dst="docker start"
-alias drmf="docker rm -f"
-alias drmi="docker rmi"
-alias di="docker images"
-
 # -=-= Quick Links =-=-
 alias dl="cd ~/Downloads"
 alias dt="cd ~/Desktop"

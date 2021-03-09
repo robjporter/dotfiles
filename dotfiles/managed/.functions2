@@ -47,3 +47,17 @@ function phpserver() {
 
 memtop() {ps -eorss,args | gsort -nr | gpr -TW$COLUMNS | ghead}
 
+addresses() {
+    ifconfig | grep "inet " | grep -v 127.0.0.1 | awk '{print $2}'
+
+    curl ipecho.net/plain
+    echo
+}
+
+port() {
+    lsof -nP -i4TCP:"$1" | grep LISTEN
+}
+
+genpass() {
+    xkcdpass -d "-"
+}
