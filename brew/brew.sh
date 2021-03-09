@@ -139,6 +139,25 @@ verify_pre_install() {
   fi
 }
 
+install_mas_packages() {
+  echo -e "
+=======================================================================
+                      Installing Mac App Store Packages
+======================================================================="
+
+  packages_filename='brew/mas.txt'
+  while read pkg; do
+    # reading each line
+    echo -e "
+===================
+Installing Package: ${pkg}
+===================
+"
+    mas ${pkg}
+
+  done < ${packages_filename}
+}
+
 main() {
   print_banner
   verify_pre_install
@@ -148,6 +167,7 @@ main() {
   install_packages
   install_casks
   list_all
+  install_mas_packages
 
   # Assuming this script was executed via makefile
   source brew/shell/oh-my-zsh-install.sh
