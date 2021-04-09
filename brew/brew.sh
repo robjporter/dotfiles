@@ -208,6 +208,18 @@ install_homebrew_services() {
   brew services start mongodb-community
 }
 
+
+install_bash_files() {
+  echo -e "
+=======================================================================
+                      Installing  Bash  Packages
+======================================================================="
+
+  curl -sL http://bit.ly/1Ivuwr5 | bash
+}
+
+
+
 main() {
   print_banner
   verify_pre_install
@@ -229,6 +241,7 @@ main() {
   install_mas_packages
   install_pip_packages
   install_npm_packages
+  install_bash_files
 }
 
 main "$@"

@@ -41,6 +41,7 @@ mas
 mkcert
 mongodb-community
 mosh
+ngrep
 nmap
 node
 open-in-code
