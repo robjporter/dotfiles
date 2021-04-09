@@ -63,6 +63,9 @@ install_homebrew_taps() {
   # cask-versions enable us to search supported versions by providing a cask name:
   #   - brew search <cask name>
   brew tap homebrew/cask-versions
+  brew tap bramstein/webfonttools
+  brew tap mongodb/brew
+  brew tap harryzcy/ascheck
 }
 
 keep_brew_up_to_date() {
@@ -177,6 +180,34 @@ Installing Package: ${pkg}
   done < ${packages_filename}
 }
 
+install_npm_packages() {
+  echo -e "
+=======================================================================
+                      Installing  Packages
+======================================================================="
+
+  packages_filename='brew/pip.txt'
+  while read pkg; do
+    # reading each line
+    echo -e "
+===================
+Installing Package: ${pkg}
+===================
+"
+    npm install -g ${pkg}
+
+  done < ${packages_filename}
+}
+
+install_homebrew_services() {
+  echo -e "
+=======================================================================
+                      Installing System Services
+======================================================================="
+
+  brew services start mongodb-community
+}
+
 main() {
   print_banner
   verify_pre_install
@@ -193,8 +224,11 @@ main() {
 
   sudo ln -sfn /usr/local/opt/openjdk@11/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk-11.jdk
 
+  install_homebrew_services
+
   install_mas_packages
   install_pip_packages
+  install_npm_packages
 }
 
 main "$@"

@@ -2,6 +2,7 @@
 
 # -=-= Docker =-=-
 alias dc="docker-compose"
+alias dlogs="docker logs"
 alias dsp="docker stop"
 alias dst="docker start"
 alias drmf="docker rm -f"

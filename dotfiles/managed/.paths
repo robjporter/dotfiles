@@ -47,6 +47,10 @@ PATH=/usr/local/bin:/usr/bin:${JAVA_HOME}/bin:${GOROOT}/bin:${GOPATH}/bin:$HOME/
 pathAppend "$SYNCTHING/MyApps/cmd"
 pathAppend "$SYNCTHING/MyApps/flutter/bin"
 
+# Added by Amplify CLI binary installer
+pathAppend "$HOME/.amplify/bin"
+
+
 export PATH=$(echo "$PATH" | awk -v RS=':' -v ORS=":" '!a[$1]++{if (NR > 1) printf ORS; printf $a[$1]}')
 
 # Do not unset these ENV vars since there are aliases that rely on them

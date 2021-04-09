@@ -102,3 +102,6 @@ source ${ZSH}/oh-my-zsh.sh
 autoload -U compinit && compinit
 
 [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
+
+# Added by Amplify CLI binary installer
+export PATH="$HOME/.amplify/bin:$PATH"

@@ -59,5 +59,6 @@ port() {
 }
 
 genpass() {
-    xkcdpass -d "-"
+	local words="${1:-5}"
+    xkcdpass -d '-' -n ${words}
 }

@@ -1,71 +1,177 @@
 #!/bin/bash
 
+export LS_COLORS='no=00:fi=00:di=01;34:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.gz=01;31:*.bz2=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.avi=01;35:*.fli=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.ogg=01;35:*.mp3=01;35:*.wav=01;35:'
+
+#  ---------------------------------------------------------------------------
+#  	1.  Quicker navigation
+#  ---------------------------------------------------------------------------
+
 alias reload!='. ~/.zshrc'
-
-# -=-= Custom =-=-
-alias github="cd ${CODEBASE}/git"
-alias gop="cd ${GOPATH}/src/github.com"
-alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; npm install npm -g; npm update -g; sudo gem update --system; sudo gem update; sudo gem cleanup'
-
-# -=-= Cleanup =-=-
-alias cleanup="find . -type f -name '*.DS_Store' -ls -delete"
-
-# -=-= Quick Links =-=-
-alias dl="cd ~/Downloads"
-alias dt="cd ~/Desktop"
-
-# -=-= Applications =-=-
-alias typora="open -a typora"
-
-# Exist only for Java 1.8 - need to use a full path
-alias visualvm="${JAVA_8_HOME}/bin/jvisualvm &"
-
-# -=-= ZSH =-=-
-alias zshconfig="vim ~/.zshrc"
-
-# -=-= Screen =-=-
-alias cls='clear' # Good 'ol Clear Screen command
-alias c="clear"
-
-# -=-= Core Replacements =-=-
-alias mv="mv -iv"
-alias cp="cp -riv"
-alias mkdir="mkdir -vp"
-
-# -=-= Quicker navigation =-=-
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
+alias .3='cd ../../../'             # Go back 3 directory levels
+alias .4='cd ../../../../'          # Go back 4 directory levels
+alias .5='cd ../../../../../'       # Go back 5 directory levels
+alias .6='cd ../../../../../../'    # Go back 6 directory levels
+alias oc='open -a Finder ./'
+alias cddev="cd ~/Documents/Development"
+alias path='echo -e ${PATH//:/\\n}'
+alias so='shopt'
+alias zap='rm -i'                   # Remove file with warning
 
-# -=-= GLS =-=-
-if $(gls &>/dev/null)
-then
-    alias ls="gls -F --color"
-    alias l="gls -lAh --color"
-    alias ll="gls -l --color"
-    alias la='gls -A --color'
-    alias lsd='gls -lF ${colorflag} | grep "^d"'
-fi
-alias path='echo $PATH | tr -s ":" "\n"'
+#  ---------------------------------------------------------------------------
+#  	2.  Generic aliases
+#  ---------------------------------------------------------------------------
 
-# -=-= Keys =-=-
+alias github="cd ${CODEBASE}/git"
+alias gop="cd ${GOPATH}/src/github.com"
+alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; npm install npm -g; npm update -g; sudo gem update --system; sudo gem update; sudo gem cleanup'
+alias cleanup="find . -type f -name '*.DS_Store' -ls -delete"
 alias pubkey="more ~/.ssh/id_rsa.pub | pbcopy | echo '=> Public key copied to pasteboard.'"
 
-# -=-= Java =-=-
+#  ---------------------------------------------------------------------------
+#  	3.  Shortcuts
+#  ---------------------------------------------------------------------------
+
+alias dl="cd ~/Downloads"
+alias dt="cd ~/Desktop"
+alias mv="mv -iv"
+alias cp="cp -riv"
+alias mkdir="mkdir -vp"
+alias rmnm="find . -name "node_modules" -exec rm -rf '{}' +"
+
+#  ---------------------------------------------------------------------------
+#  	4.  Applications
+#  ---------------------------------------------------------------------------
+
+alias typora="open -a typora"
+alias visualvm="${JAVA_8_HOME}/bin/jvisualvm &"
+alias zshconfig="vim ~/.zshrc"
+alias wget='wget -c'
+
+#  ---------------------------------------------------------------------------
+#  	4.  Applications - Brew
+#  ---------------------------------------------------------------------------
+
+alias brewd="brew doctor"
+alias brewi="brew install"
+alias brews="brew search"
+alias brewu="brew uninstall"
+alias brewupdate='brew update && brew upgrade && brew cleanup && brew prune && brew doctor'
+
+#  ---------------------------------------------------------------------------
+#  	4.  Applications - Kubernetes
+#  ---------------------------------------------------------------------------
+
+alias k="kubectl"
+alias kg="kubectl get"
+alias kd="kubectl describe -A"
+alias kdp="kubectl describe -A pod"
+alias kds="kubectl describe -A svc"
+alias kga="kubectl get -A"
+alias kgap="kubectl get -A pods"
+alias kgas="kubectl get -A svc"
+alias kl="kubectl log"
+alias ktn="kubectl top nodes"
+alias ktp="kubectl top pods -A"
+
+#  ---------------------------------------------------------------------------
+#  	5.  Monitoring
+#  ---------------------------------------------------------------------------
+
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+alias ttop="top -R -F -s 10 -o rsize"
+alias hogtop='top -l 1 -o rsize | head -20'
+
+#  ---------------------------------------------------------------------------
+#  	6.  Screen
+#  ---------------------------------------------------------------------------
+
+alias cls='clear' # Good 'ol Clear Screen command
+alias c="clear"
+
+#  ---------------------------------------------------------------------------
+#  	7.  Networking
+#  ---------------------------------------------------------------------------
+
+alias flushDNS='sudo killall -HUP mDNSResponder'                                            # flushDNS:     Flush out the DNS Cache
+alias ipInfo0='ipconfig getpacket en0'                                                      # ipInfo0:      Get info on connections for en0
+alias ipInfo1='ipconfig getpacket en1'                                                      # ipInfo1:      Get info on connections for en1
+alias lsock='sudo /usr/sbin/lsof -i -P'                                                     # lsock:        Display open sockets
+alias lsockT='sudo /usr/sbin/lsof -nP | grep TCP'                                           # lsockT:       Display only open TCP sockets
+alias lsockU='sudo /usr/sbin/lsof -nP | grep UDP'                                           # lsockU:       Display only open UDP sockets
+alias myip='curl -s checkip.dyndns.org | sed -e "s/.*Current IP Address: //" -e "s/<.*$//"' # myip:         Public facing IP Address
+alias netCons='lsof -i'                                                                     # netCons:      Show all open TCP/IP sockets
+alias op='sudo lsof -i -P'                                                                  # op:           List of open ports
+alias openPorts='sudo lsof -i | grep LISTEN'       
+alias ping='ping -c 5'                                         # openPorts:    All listening connections
+
+#  ---------------------------------------------------------------------------
+#  	8.  Output formatting
+#  ---------------------------------------------------------------------------
+
+if ls --color > /dev/null 2>&1; then # GNU `ls`
+	colorflag="--color"
+else # OS X `ls`
+	colorflag="-G"
+fi
+
+# List all files colorized in long format
+# shellcheck disable=SC2139
+alias l="ls -lhF ${colorflag}"
+
+alias ll="ls -l ${colorflag}"
+
+# List all files colorized in long format, including dot files
+# shellcheck disable=SC2139
+alias la="ls -lahF ${colorflag}"
+
+# List only directories
+# shellcheck disable=SC2139
+alias lsd="ls -lhF ${colorflag} | grep --color=never '^d'"
+
+# Always use color output for `ls`
+# shellcheck disable=SC2139
+alias ls="command ls ${colorflag}"
+
+# Always enable colored `grep` output
+alias grep='grep --color=auto '
+
+alias path='echo $PATH | tr -s ":" "\n"'
+
+#  ---------------------------------------------------------------------------
+#  	9.  Java
+#  ---------------------------------------------------------------------------
+
 alias java8='export JAVA_HOME=${JAVA_8_HOME}'
 alias java9='export JAVA_HOME=${JAVA_9_HOME}'
 alias java10='export JAVA_HOME=${JAVA_10_HOME}'
 alias java11='export JAVA_HOME=${JAVA_11_HOME}'
 alias java12='export JAVA_HOME=${JAVA_12_HOME}'
 
-# -=-= GO =-=-
+#  ---------------------------------------------------------------------------
+#  	10.  Go
+#  ---------------------------------------------------------------------------
+
 alias go1.13='export GOROOT=${GOROOT_1_13}'
 alias go1.14.3='export GOROOT=${GOROOT_1_14_3}'
 
-# -=-= IntelliJ =-=-
+#  ---------------------------------------------------------------------------
+#  	11.  IntelliJ
+#  ---------------------------------------------------------------------------
+
 INTELLIJ_VERSION_FOLDER=IntelliJIdea2020.1
 alias ij-cache="cd ~/Library/Caches/JetBrains/${INTELLIJ_VERSION_FOLDER}"
 alias ij-pref="cd ~/Library/Preferences/JetBrains/${INTELLIJ_VERSION_FOLDER}"
 alias ij-plug="cd ~/Library/Application\ Support/JetBrains/${INTELLIJ_VERSION_FOLDER}"
 alias ij-logs="cd ~/Library/Logs/JetBrains/${INTELLIJ_VERSION_FOLDER}"
+
+#  ---------------------------------------------------------------------------
+#  	12.  IP Addresses
+#  ---------------------------------------------------------------------------
+
+alias pubip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias localip="sudo ifconfig | grep -Eo 'inet (addr:)?([0-9]*\\.){3}[0-9]*' | grep -Eo '([0-9]*\\.){3}[0-9]*' | grep -v '127.0.0.1'"
+alias ips="sudo ifconfig -a | grep -o 'inet6\\? \\(addr:\\)\\?\\s\\?\\(\\(\\([0-9]\\+\\.\\)\\{3\\}[0-9]\\+\\)\\|[a-fA-F0-9:]\\+\\)' | awk '{ sub(/inet6? (addr:)? ?/, \"\"

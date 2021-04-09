@@ -1,0 +1,4 @@
+parse-server
+parse-dashboard
+mongodb-runner
+nvm

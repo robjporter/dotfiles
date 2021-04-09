@@ -24,6 +24,8 @@ global
 go
 graphviz
 hammerspoon
+htop
+httpie
 imagemagick
 java11
 jpeg
@@ -37,6 +39,7 @@ lua
 mackup
 mas
 mkcert
+mongodb-community
 mosh
 nmap
 node
@@ -48,12 +51,17 @@ pandoc
 pcre
 pcre2
 perl
+pock
 powerlevel10k
 powershell-preview
 python3
 ranger
 readline
+rename
 ruby
+sfnt2woff
+sfnt2woff-zopfli
+ssh-copy-id
 stow
 sqlite
 sshpass
@@ -69,6 +77,7 @@ watch
 webp
 wget
 wget
+woff2
 x264
 x265
 yarn

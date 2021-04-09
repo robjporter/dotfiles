@@ -1,0 +1,7 @@
+#!/bin/bash
+
+alias y="yarn"
+alias yst="yarn start"
+alias ya="yarn add "
+alias yb="yarn build"
+alias yd="yarn dev"
