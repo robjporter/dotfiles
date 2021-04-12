@@ -39,6 +39,7 @@ lua
 mackup
 mas
 mkcert
+minica
 mongodb-community
 mosh
 ngrep
