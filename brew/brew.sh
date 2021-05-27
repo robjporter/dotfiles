@@ -66,6 +66,9 @@ install_homebrew_taps() {
   brew tap bramstein/webfonttools
   brew tap mongodb/brew
   brew tap harryzcy/ascheck
+  brew tap dbcli/tap
+  brew tap ellie/atuin
+  brew tap homebrew/cask-fonts
 }
 
 keep_brew_up_to_date() {
@@ -140,6 +143,25 @@ verify_pre_install() {
     echo -e "\n    Nothing has changed.\n"
     exit 0
   fi
+}
+
+install_gem_packages() {
+  echo -e "
+=======================================================================
+                      Installing GEM Packages
+======================================================================="
+
+  packages_filename='brew/gem.txt'
+  while read pkg; do
+    # reading each line
+    echo -e "
+===================
+Installing Package: ${pkg}
+===================
+"
+    sudo gem install ${pkg}
+
+  done < ${packages_filename}
 }
 
 install_mas_packages() {
@@ -238,6 +260,7 @@ main() {
 
   install_homebrew_services
 
+  install_gem_packages
   install_mas_packages
   install_pip_packages
   install_npm_packages

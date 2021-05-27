@@ -13,7 +13,9 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
 
-GOVERSION=$(brew list go 2> /dev/null | head -n 1 | cut -d '/' -f 6)
-export GOROOT=$(brew --prefix)/Cellar/go/$GOVERSION/libexec
+# export GOVERSION=$(brew list go 2> /dev/null | head -n 1 | cut -d '/' -f 6)
+# export GOROOT=$(brew --prefix)/Cellar/go/$GOVERSION/libexec
 
-export KUBECONFIG=/Users/roporter/SyncThing/Home/kubeconfig
+export GOROOT="$(brew --prefix golang)/libexec"
+
+export KUBECONFIG="/Users/roporter/SyncThing/Home/kubeconfig"

@@ -50,6 +50,8 @@ pathAppend "$SYNCTHING/MyApps/flutter/bin"
 # Added by Amplify CLI binary installer
 pathAppend "$HOME/.amplify/bin"
 
+# Add Doom
+# pathAppend "$HOME/.emacs.d/bin"
 
 export PATH=$(echo "$PATH" | awk -v RS=':' -v ORS=":" '!a[$1]++{if (NR > 1) printf ORS; printf $a[$1]}')
 

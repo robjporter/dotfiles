@@ -158,6 +158,8 @@ alias lsd="ls -lhF ${colorflag} | grep --color=never '^d'"
 # shellcheck disable=SC2139
 alias ls="command ls ${colorflag}"
 
+alias lc='colorls --sd --hyperlink --report'
+
 # Always enable colored `grep` output
 alias grep='grep --color=auto '
 

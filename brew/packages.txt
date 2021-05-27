@@ -1,6 +1,7 @@
 ack
 ansible
 archey
+atuin
 autoconf
 automake
 berkeley-db
@@ -15,6 +16,7 @@ deno
 derailed/k9s/k9s
 dockutil
 duti
+fd
 ffmpeg
 fzf
 gcc
@@ -35,6 +37,7 @@ kubernetes-helm
 kure
 libtool
 lighttpd
+litecli
 lua
 mackup
 mas
@@ -42,6 +45,7 @@ mkcert
 minica
 mongodb-community
 mosh
+mycli
 ngrep
 nmap
 node
@@ -60,6 +64,7 @@ python3
 ranger
 readline
 rename
+rg
 ruby
 sfnt2woff
 sfnt2woff-zopfli

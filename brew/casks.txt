@@ -5,6 +5,7 @@ brave-browser-dev
 docker
 firefox-beta
 flux
+font-hack-nerd-font
 google-chrome
 iterm2-beta
 kap
@@ -14,6 +15,7 @@ microsoft-edge-dev
 mockoon
 mongodb-compass
 muzzle
+pgcli
 platypus
 postman
 slack
