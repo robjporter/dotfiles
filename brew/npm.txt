@@ -1,6 +1,7 @@
 parse-server
 parse-dashboard
 mongodb-runner
+nexe
 npkill
 npm-gui
 nvm
